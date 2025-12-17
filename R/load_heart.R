@@ -1,5 +1,5 @@
 
-load_heart <- function(vars = c("a-s", "rbp-restECG", "chol-mhr"), severe_diag = FALSE){
+load_heaRt <- function(vars = c("a-s", "rbp-restECG", "chol-mhr"), severe_diag = FALSE){
 
   vars <-  match.arg(vars)
 
