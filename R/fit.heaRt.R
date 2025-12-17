@@ -78,7 +78,7 @@ fit.tReeboot <- function(obj, num_var = c("1", "2"),
                  data = data,
                  fit_type = fit_type)
   attr(output, "source") <- attr(obj, "source")
-  class(output) <- c("binpred_fit", "listof")
+  class(output) <- c("heaRt_fit", "listof")
   invisible(output)
 
 }
