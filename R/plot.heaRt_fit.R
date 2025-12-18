@@ -8,6 +8,10 @@ plot.heaRt_fit <- function(x, decision.tree = FALSE, random.forest = FALSE){
   if(random.forest == TRUE) #risolvere questo
     return(randomForest::partialPlot(x, ))
 
+  dat <- x$data
+
+
+
 
 
 }

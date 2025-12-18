@@ -3,15 +3,14 @@ fit.tReeboot <- function(obj, num_var = c("1", "2"),
                          fit_type = c("decision.tree", "logistic.reg", "random.forest", "lm"),
                          consider_first = TRUE, ...) {
 
+  # with the param "num_var" the user can choose the number of variable in the model(up to two)
+  # and with the param "consider_first" can choose if considering the first of the two or no
+
   if(!inherits(obj, "heart"))
     stop("This function only works on objects of class \"heart\"")
 
   # choosing the type of fitting model
   fit_type = match.arg(fit_type)
-
-  # selection of the variables
-  if(num_var != length(var_position))
-    stop("Please input the same number of position as the number of variable you choose")
 
   y <- obj$y
   var1 <- obj[[2]]
@@ -79,6 +78,9 @@ fit.tReeboot <- function(obj, num_var = c("1", "2"),
                  fit_type = fit_type)
   attr(output, "source") <- attr(obj, "source")
   class(output) <- c("heaRt_fit","listof")
+
+  # checking if the fitted model is either a decision tree or a random forest,
+  # it'll be useful when plotting
 
   if(fit_type == "decision.tree")
     class(output) <- c("heaRt_fit", "rpart", "listof")
