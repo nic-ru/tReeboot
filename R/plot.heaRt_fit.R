@@ -5,8 +5,8 @@ plot.heaRt_fit <- function(x, decision.tree = FALSE, random.forest = FALSE){
   if(decision.tree == TRUE)
     return(rpart.plot::prp(x))
 
-  if(random.forest == TRUE) #risolvere questo
-    return(randomForest::partialPlot(x, ))
+  if(random.forest == TRUE) #risolvere questo facendo in modo che printi qualcosa
+    stop("This tiper of algorith is not printable")
 
   # checking with how many variables we are working
 
@@ -38,7 +38,7 @@ plot.heaRt_fit <- function(x, decision.tree = FALSE, random.forest = FALSE){
     return(p)
   }
 
-  if(ncol(data) == 3){
+  if(ncol(dat) == 3){
 
     fits <- switch(x$fit_type,
                    lm = {
