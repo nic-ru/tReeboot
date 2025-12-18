@@ -1,4 +1,5 @@
 
+
 plot.heaRt_fit <- function(x, decision.tree = FALSE, random.forest = FALSE, ...){
 
   # checking if the object is either a decision tree or a random forest
