@@ -1,5 +1,27 @@
-
-
+#' Plot heaRt output
+#'
+#' Plot the different type of model fro sintoms related to the diagnosis of heart disease
+#'
+#' @param x An abject of class \code{"heaRt_fit"}.
+#'
+#' @param ... Catches unused arguments to \code{plot}
+#'
+#' @returns Either a ggplot, a prp plot or partial plot
+#'
+#' @export
+#'
+#' @importFrom ggplot2 "ggplot" "geom_point" "geom_line" "theme"
+#' @importFrom dplyr "mutate"
+#' @importFrom rpart "prp"
+#' @importFrom randomForest "partialPlot"
+#' @importFrom tibble "tibble"
+#'
+#' @examples
+#' dat <- load_heaRt(vars = "rbp-restECG")
+#' mod1 <- fit(dat, num_var = "2", fit_type = "deicision.tree")
+#' mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
+#' plot(mod1)
+#' plot(mod2)
 plot.heaRt_fit <- function(x, ...){
 
   # checking if the object is either a decision tree or a random forest
@@ -38,7 +60,7 @@ plot.heaRt_fit <- function(x, ...){
     p <- ggplot2::ggplot(data = dat, aes(x = x, y = y, color = y)) +
           ggplot2::geom_point() +
           ggplot2::geom_line(data = fits, aes(x = predictor, y = pred)) +
-          theme(legend.position = "None")
+          ggplot2::theme(legend.position = "None")
 
     return(p)
   }
@@ -59,7 +81,7 @@ plot.heaRt_fit <- function(x, ...){
     p <- ggplot2::ggplot(data = dat, aes(x = var1, y = var2, color = y)) +
       ggplot2::geom_point() +
       ggplot2::geom_line(data = fits, aes(x = predictor, y = pred)) +
-      theme(legend.position = "None")
+      ggplot2::theme(legend.position = "None")
 
     return(p)
   }
