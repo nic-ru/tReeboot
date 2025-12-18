@@ -23,7 +23,7 @@ fit.tReeboot <- function(obj, num_var = c("1", "2"),
                    data.frame(y = y, var1 = var1, var2 = var2)})
 
   if(consider_first == FALSE)
-    data <- data |> dplyr::select(y, var2)
+    data <- data |> dplyr::select(y, var2) |> dplyr::rename("var1" == "var2") #easier to plot the randomf
 
 
   # fitting the model

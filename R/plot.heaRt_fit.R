@@ -1,13 +1,17 @@
 
 
-plot.heaRt_fit <- function(x, decision.tree = FALSE, random.forest = FALSE, ...){
+plot.heaRt_fit <- function(x, ...){
 
   # checking if the object is either a decision tree or a random forest
-  if(decision.tree == TRUE)
+  if(x$fit_type == "decision.tree")
     return(rpart.plot::prp(x))
 
-  if(random.forest == TRUE) #risolvere questo facendo in modo che printi qualcosa
-    stop("This tiper of algorith is not printable")
+  # it'll print a partial plot considering always the first variable
+  if(x$fit_type == "random.forest"){
+    dat <- x$data
+    randomForest::partialPlot(x, dat, var1)
+    }
+
 
   # checking with how many variables we are working
 
@@ -59,12 +63,4 @@ plot.heaRt_fit <- function(x, decision.tree = FALSE, random.forest = FALSE, ...)
 
     return(p)
   }
-
-
-
-
-
-
-
-
 }
