@@ -26,12 +26,12 @@ plot.heaRt_fit <- function(x, ...){
 
   # checking if the object is either a decision tree or a random forest
   if(x$fit_type == "decision.tree")
-    return(rpart.plot::prp(x))
+    return(rpart.plot:::prp(x))
 
   # it'll print a partial plot considering always the first variable
   if(x$fit_type == "random.forest"){
     dat <- x$data
-    randomForest::partialPlot(x, dat, var1)
+    randomForest:::partialPlot(x, dat, var1)
     }
 
 

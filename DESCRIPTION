@@ -11,7 +11,7 @@ Description: This package can load data about the diagnosies of heart diseases a
     medical exams conducted on some patient.
     The user can then decide to fit some model with the data that he loaded and then plot them with plot
     function in the packege.
-License: What license is it under?
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.3
