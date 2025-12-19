@@ -10,11 +10,12 @@
 #'
 #' @export
 #'
-#' @importFrom ggplot2 "ggplot" "geom_point" "geom_line" "theme"
+#' @importFrom ggplot2 "ggplot" "geom_point" "geom_line" "theme" "aes"
 #' @importFrom dplyr "mutate"
 #' @importFrom rpart "prp"
 #' @importFrom randomForest "partialPlot"
 #' @importFrom tibble "tibble"
+#' @importFrom stats "predict"
 #'
 #' @examples
 #' dat <- load_heaRt(vars = "rbp-restECG")
@@ -48,11 +49,11 @@ plot.heaRt_fit <- function(x, ...){
 
     fits <- switch(x$fit_type,
                   lm = {
-                    tibble::tibble(predictor, pred=predict(x$model,
+                    tibble::tibble(predictor, pred = stats::predict(x$model,
                                                            newdata = tibble::tibble(x=predictor)))
                   },
                   logistic.reg = {
-                    tibble::tibble(predictor, pred=predict(x$model,
+                    tibble::tibble(predictor, pred = stats::predict(x$model,
                                                            newdata = tibble::tibble(x=predictor)))
                   })
 
@@ -78,9 +79,9 @@ plot.heaRt_fit <- function(x, ...){
                    })
 
 
-    p <- ggplot2::ggplot(data = dat, aes(x = var1, y = var2, color = y)) +
+    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = var2, color = y)) +
       ggplot2::geom_point() +
-      ggplot2::geom_line(data = fits, aes(x = predictor, y = pred)) +
+      ggplot2::geom_line(data = fits, ggplot2::aes(x = predictor, y = pred)) +
       ggplot2::theme(legend.position = "None")
 
     return(p)
