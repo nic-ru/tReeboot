@@ -39,7 +39,7 @@
 #' mod2 <- fit(dat, num_var = "2", fit_type = "random.forest")
 #' mod3 <- fit(dat, num_var = "1", fit_type = "lm")
 #' mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
-fit.tReeboot <- function(obj, num_var = c("1", "2"),
+fit.heaRt <- function(obj, num_var = c("1", "2"),
                          fit_type = c("decision.tree", "logistic.reg", "random.forest", "lm"),
                          consider_first = TRUE, ...) {
 
