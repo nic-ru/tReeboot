@@ -6,7 +6,7 @@ Authors@R: c(
     person("Nicola", "Ruaro", email = "nicolai.ruaro@gmail.com", role = c("aut", "cre")),
     person("Lucrezia", "Bonifazi", email = "lucrezia.bonifazi.2026@mumail.ie", role = c("aut")),
     person("Anna", "Signorini", email = "anna.signorini.2026@mumail.ie", role = c("aut"))
-)
+    )
 Description: This package can load data about the diagnoses of heart diseases and the results of the
     medical exams conducted on some patient.
     The user can then decide to fit some model with the data that he loaded and then plot them with plot
