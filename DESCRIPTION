@@ -4,10 +4,15 @@ Title: Load and analyze with machine learning algorithms some data about heart d
 Version: 0.1.0
 Authors@R: c(
     person("Nicola", "Ruaro", email = "nicolai.ruaro@gmail.com", role = c("aut", "cre")),
+<<<<<<< HEAD
     person("Anna", "Signorini", email = "", role = c("aut")),
     person("Lucrezia", "Bonifazi", email = "lucrezia.bonifazi.2026@mumail.ie", role = c("aut"))
+=======
+    person("Anna", "Signorini", email = "anna.signorini.2026@mumail.ie", role = c("aut")),
+    person("Lucrezia", "Bonifazi", email = "", role = c("aut"))
+>>>>>>> 00ca50c8ee22560aae4dcbdd1f4aeb8304abc06d
   )
-Description: This package can load data about the diagnosies of heart diseases and the results of the
+Description: This package can load data about the diagnoses of heart diseases and the results of the
     medical exams conducted on some patient.
     The user can then decide to fit some model with the data that he loaded and then plot them with plot
     function in the packege.
