@@ -15,11 +15,11 @@
 Either a ggplot, a prp plot or partial plot
 }
 \description{
-Plot the different type of model fro sintoms related to the diagnosis of heart disease
+Plot the different type of model from symptoms related to the diagnosis of heart disease
 }
 \examples{
 dat <- load_heaRt(vars = "rbp-restECG")
-mod1 <- fit(dat, num_var = "2", fit_type = "deicision.tree")
+mod1 <- fit(dat, num_var = "2", fit_type = "decision.tree")
 mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
 plot(mod1)
 plot(mod2)

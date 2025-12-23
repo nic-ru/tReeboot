@@ -41,7 +41,7 @@ for objects of class \code{"heaRt_fit"}.
 }
 \examples{
 dat <- load_heaRt(vars = "rbp-restECG")
-mod1 <- fit(dat, num_var = "2", fit_type = "deicision.tree")
+mod1 <- fit(dat, num_var = "2", fit_type = "decision.tree")
 mod2 <- fit(dat, num_var = "2", fit_type = "random.forest")
 mod3 <- fit(dat, num_var = "1", fit_type = "lm")
 mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
