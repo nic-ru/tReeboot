@@ -22,7 +22,7 @@
 #' @seealso \code{\link{fit}}, \code{\link{plot.heaRt_fit}}
 #'
 #' @examples
-#' dat <- load_heaRt(vars = "rbp-restECG", sever_diag = TRUE)
+#' dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
 load_heaRt <- function(vars = c("a-s", "rbp-restECG", "chol-mhr"), severe_diag = FALSE){
 
   # the user can choose which of variables he wants to analyze from the original data
