@@ -37,14 +37,13 @@ plot.heaRt_fit <- function(x, ...){
   # it'll print a partial plot considering always the first variable
   if(x$fit_type == "random.forest"){
     dat <- x$data
-    randomForest::partialPlot(x$model, dat, var1)
+    return(randomForest::partialPlot(x$model, dat, var1))
     }
 
 
   # checking with how many variables we are working
 
   dat <- x$data
-
 
   if(ncol(dat) == 2) {
     dat <- dat |>
@@ -82,7 +81,8 @@ plot.heaRt_fit <- function(x, ...){
                    },
                    logistic.reg = {
                      tibble::tibble(predictor, pred = stats::predict(x$model,
-                                                            newdata = tibble::tibble(x=predictor)))
+                                                            newdata = tibble::tibble(var1=predictor,
+                                                                                     var2=dat$var2)))
                    })
 
 
