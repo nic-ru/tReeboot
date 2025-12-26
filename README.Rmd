@@ -1,12 +1,22 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# heaRt R package
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
+# heaRt R package
 ### Written by Anna Signorini, Lucrezia Bonifazi, and Nicola Ruaro
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 ## Description
@@ -23,11 +33,11 @@ Three functions are provided:
 
 1.  `load_heaRt()`: downloads the heart disease dataset, filters
     observations according to diagnosis severity, and returns a tidy
-    object of class “heaRt”,
+    object of class "heaRt",
 
 2.  a `fit()` method: for fitting predictive models (decision trees,
     logistic regression, random forests, and linear regression) to
-    “heaRt” objects. The user can choose whether to fit models with one
+    "heaRt" objects. The user can choose whether to fit models with one
     or two predictors,
 
 3.  and a `plot()` method for producing nice visualisations depending on
@@ -39,8 +49,7 @@ the typical workflow of the `heaRt` package follows below.
 
 ## Installation
 
-You can install the development version of heaRt from
-[GitHub](https://github.com/) with:
+You can install the development version of heaRt from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
@@ -51,10 +60,10 @@ pak::pak("nic-ru/heaRt")
 
 This is a basic example which shows you how to solve a common problem:
 
-``` r
+```{r example}
 ## library(heaRt)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
