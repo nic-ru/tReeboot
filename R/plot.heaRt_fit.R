@@ -17,12 +17,15 @@
 #' @importFrom tibble "tibble"
 #' @importFrom stats "predict"
 #'
-#' @examples
+#' @examples{
+#' @dontrun{
 #' dat <- load_heaRt(vars = "rbp-restECG")
 #' mod1 <- fit(dat, num_var = "2", fit_type = "decision.tree")
 #' mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
 #' plot(mod1)
 #' plot(mod2)
+#' }
+#' }
 plot.heaRt_fit <- function(x, ...){
 
   # checking if the object is either a decision tree or a random forest
