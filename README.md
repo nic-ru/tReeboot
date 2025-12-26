@@ -1,14 +1,52 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
-# heaRt
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# heaRt R package
+
+### Written by Anna Signorini, Lucrezia Bonifazi, and Nicola Ruaro
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of heaRt is to ...
+## Description
+
+**heaRt** is an R package for analyzing and modelling clinical data
+related to heart disease diagnosis.
+
+The package downloads and processes the Cleveland Heart Disease dataset
+from the UCI Machine Learning Repository, allows the user to select
+relevant clinical variables, fits different statistical and machine
+learning models, and produces informative plots of the fitted results.
+
+Three functions are provided:
+
+1.  `load_heaRt()`: downloads the heart disease dataset, filters
+    observations according to diagnosis severity, and returns a tidy
+    object of class "heaRt",
+
+2.  a `fit()` method: for fitting predictive models (decision trees,
+    logistic regression, random forests, and linear regression) to
+    "heaRt" objects. The user can choose whether to fit models with one
+    or two predictors,
+
+3.  and a `plot()` method for producing nice visualisations depending on
+    the fitted model (decision tree plots, partial dependence plots, or
+    regression curves) based on`ggplot2`.
+
+Typically, these functions are applied sequentially. A demonstration of
+the typical workflow of the `heaRt` package follows below.
+
 
 ## Installation
 
-You can install the development version of heaRt from [GitHub](https://github.com/) with:
+You can install the development version of heaRt from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
@@ -22,5 +60,6 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(heaRt)
 ## basic example code
-```
 
+# FARE UN ESEMPIO DA SCRIVERE QUA
+```
