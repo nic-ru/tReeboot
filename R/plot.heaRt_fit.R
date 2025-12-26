@@ -32,7 +32,7 @@ plot.heaRt_fit <- function(x, ...){
 
   # checking if the object is either a decision tree or a random forest
   if(x$fit_type == "decision.tree")
-    return(rpart.plot::prp(x))
+    return(rpart.plot::prp(x$model, type = 2, extra = 0, roundint=FALSE))
 
   # it'll print a partial plot considering always the first variable
   if(x$fit_type == "random.forest"){

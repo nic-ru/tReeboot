@@ -128,12 +128,14 @@ fit.heaRt <- function(obj, num_var = c("1", "2"),
 
   output <- list(model = mod,
                  data = data,
-                 fit_type = fit_type)
+                 fit_type = fit_type,
+                 method = NULL)
   attr(output, "source") <- attr(obj, "source")
-  class(output) <- c("heaRt_fit","listof")
 
   # checking if the fitted model is either a decision tree or a random forest,
   # it'll be useful when plotting
+  if(fit_type %in% c("decision.tree", "random.forest"))
+    output$method <- "class"
 
   if(fit_type == "decision.tree")
     class(output) <- c("heaRt_fit", "rpart", "listof")
