@@ -12,14 +12,14 @@
 #' @returns An object of class \code{"heaRt"} which is a list of the chosen variables and the results
 #' of the diagnosis (1 = positive, 0 = negative)
 #'
-#' @note A dedicated \code{\link{fit}} function is provided for objects of class \code{"heaRt"}.
+#' @note A dedicated \code{\link[=fit]{fit}} function is provided for objects of class \code{"heaRt"}.
 #'
 #' @export
 #'
 #' @importFrom dplyr "filter" "mutate" "select"
 #' @importFrom readr "read_csv"
 #'
-#' @seealso \code{\link{fit}}, \code{\link{plot.heaRt_fit}}
+#' @seealso \code{\link[=fit]{fit}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}}
 #'
 #' @examples
 #' dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)

@@ -20,11 +20,11 @@
 #' @returns An object of class \code{"heaRt_fit"} which includes the model details
 #' as well as the data set and \code{fit_type} used.
 #'
-#' @note A dedicated \code{\link{plot.heaRt_fit}} method is provided
+#' @note A dedicated \code{\link[=plot.heaRt_fit]{plot}} method is provided
 #' for objects of class \code{"heaRt_fit"}.
 #'
-#' @seealso \code{\link{load_climr}}, \code{\link{plot.climr_fit}}, \code{\link[stats]{lm}},
-#' \code{\link[rpart]{rpart}}, \code{\link[stats]{glm}}, \code{\link[randomForest]{randomForest}}.
+#' @seealso @seealso \code{\link[=load_heaRt]{load_heaRt}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}},
+#' \code{\link[stats]{lm}}, \code{\link[rpart]{rpart}}, \code{\link[stats]{glm}}, \code{\link[randomForest]{randomForest}}
 #'
 #' @export
 #'

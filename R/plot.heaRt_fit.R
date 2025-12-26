@@ -8,6 +8,9 @@
 #'
 #' @returns Either a ggplot, a prp plot or partial plot
 #'
+#' @method plot heaRt_fit
+#' @export
+#'
 #' @export
 #'
 #' @importFrom ggplot2 "ggplot" "geom_point" "geom_line" "theme" "aes"

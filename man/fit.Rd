@@ -36,7 +36,7 @@ Fit either decision tree, logistic regression, random forest or linear model of 
 variable diagnosis(y) as the response.
 }
 \note{
-A dedicated \code{\link{plot.heaRt_fit}} method is provided
+A dedicated \code{\link[=plot.heaRt_fit]{plot}} method is provided
 for objects of class \code{"heaRt_fit"}.
 }
 \examples{
@@ -47,6 +47,6 @@ mod3 <- fit(dat, num_var = "1", fit_type = "lm")
 mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
 }
 \seealso{
-\code{\link{load_climr}}, \code{\link{plot.climr_fit}}, \code{\link[stats]{lm}},
-\code{\link[rpart]{rpart}}, \code{\link[stats]{glm}}, \code{\link[randomForest]{randomForest}}.
+@seealso \code{\link[=load_heaRt]{load_heaRt}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}},
+\code{\link[stats]{lm}}, \code{\link[rpart]{rpart}}, \code{\link[stats]{glm}}, \code{\link[randomForest]{randomForest}}
 }
