@@ -28,3 +28,5 @@ Date: 2025-12-26
 Suggests: 
     knitr,
     rmarkdown
+VignetteBuilder: 
+    knitr
