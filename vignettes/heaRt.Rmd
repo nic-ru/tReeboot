@@ -30,3 +30,27 @@ The **heaRT** package provides a framework for loading, modelling, and visualisi
 3.  `plot()`: visualisation of fitted models.
 
 Typically, these functions are applied sequentially.
+
+
+### Installation
+
+__heaRt__ will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a nice desktop environment for using R is also recommended.
+
+Once in R you can type at the R command prompt:
+
+```{r, eval=FALSE}
+install.packages('devtools')
+devtools::install_github('nic-ru/heaRt')
+```
+
+to install the latest development version of the package from the __heaRt__ [GitHub page](https://github.com/nic-ru/heaRt). 
+
+In either case, if you then type:
+
+```{r, eval=FALSE}
+library(heaRt)
+```
+
+it will load in all the aforementioned __heaRt__ functions.
+
+Some features may not yet be fully tested, and occasionally this version might be liable to break when it is in the process of being updated. If you find bugs or want to suggest new features please visit the [GitHub issues page](https://github.com/nic-ru/heaRt/issues). 
