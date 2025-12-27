@@ -1,6 +1,7 @@
 ---
 title: "heaRt"
 output: rmarkdown::html_vignette
+
 vignette: >
   %\VignetteIndexEntry{heaRt}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,3 +18,15 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(heaRt)
 ```
+
+## Introduction
+
+The **heaRT** package provides a framework for loading, modelling, and visualising heart disease data. The package is built around three main functions:
+
+1.  `load_heaRt()`: data acquisition and information filtering,
+
+2.  `fit()`: model fitting,
+
+3.  `plot()`: visualisation of fitted models.
+
+Typically, these functions are applied sequentially.
