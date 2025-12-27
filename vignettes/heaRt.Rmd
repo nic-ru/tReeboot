@@ -21,7 +21,14 @@ library(heaRt)
 
 ## Introduction
 
-The **heaRt** package provides a framework for loading, modelling, and visualising heart disease data. The package is built around three main functions:
+The _heaRt_ package is designed for users who want to explore heart disease
+data without dealing with complex preprocessing or model specification.
+
+The _heaRt_ package deliberately restricts the choice of predictors to
+predefined pairs of variables. This choice ensures that all models are fitted on clinically meaningful combinations of variables, that the user is not required to specify model formulas and
+that results remain easy to interpret and compare.
+
+The package is built around three main functions:
 
 1.  `load_heaRt()`: data acquisition and information filtering,
 
@@ -205,7 +212,7 @@ two-dimensional predictor space, with the fitted relationship overlaid.
 
 ```{r}
 # questo è un esempio modificare blabla 
-# plot(mod_log)
+# plot(logistic.reg)
 ```
 
 All regression-based plots are produced using ggplot2, ensuring
