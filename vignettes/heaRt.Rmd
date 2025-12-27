@@ -15,13 +15,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, echo=FALSE}
 library(heaRt)
 ```
 
 ## Introduction
 
-The **heaRT** package provides a framework for loading, modelling, and visualising heart disease data. The package is built around three main functions:
+The **heaRt** package provides a framework for loading, modelling, and visualising heart disease data. The package is built around three main functions:
 
 1.  `load_heaRt()`: data acquisition and information filtering,
 
@@ -31,10 +31,9 @@ The **heaRT** package provides a framework for loading, modelling, and visualisi
 
 Typically, these functions are applied sequentially.
 
-
 ### Installation
 
-__heaRt__ will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a nice desktop environment for using R is also recommended.
+**heaRt** will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a nice desktop environment for using R is also recommended.
 
 Once in R you can type at the R command prompt:
 
@@ -43,7 +42,7 @@ install.packages('devtools')
 devtools::install_github('nic-ru/heaRt')
 ```
 
-to install the latest development version of the package from the __heaRt__ [GitHub page](https://github.com/nic-ru/heaRt). 
+to install the latest development version of the package from the **heaRt** [GitHub page](https://github.com/nic-ru/heaRt).
 
 In either case, if you then type:
 
@@ -51,6 +50,163 @@ In either case, if you then type:
 library(heaRt)
 ```
 
-it will load in all the aforementioned __heaRt__ functions.
+it will load in all the aforementioned **heaRt** functions.
 
-Some features may not yet be fully tested, and occasionally this version might be liable to break when it is in the process of being updated. If you find bugs or want to suggest new features please visit the [GitHub issues page](https://github.com/nic-ru/heaRt/issues). 
+Some features may not yet be fully tested, and occasionally this version might be liable to break when it is in the process of being updated. If you find bugs or want to suggest new features please visit the [GitHub issues page](https://github.com/nic-ru/heaRt/issues).
+
+## Data loading and information filtering: `load_heaRt()`
+
+The function `load_heaRt()` is responsible for downloading, filtering, and restructuring the heart disease dataset used throughout the package.\
+The function retrieves the Cleveland Heart Disease dataset from the UCI Machine Learning Repository. This dataset contains clinical and demographic variables commonly used in the study of cardiovascular disease, such as age, sex, resting blood pressure, cholesterol levels, and maximum heart rate, together with a multi-level diagnostic outcome.
+
+### Variable selection
+
+The argument vars allows the user to select one of three predefined pairs of predictors:
+
+-   `"a-s"`: age and sex,
+
+-   `"rbp-restECG"`: resting blood pressure and resting electrocardiogram,
+
+-   `"chol-mhr"`: cholesterol level and maximum heart rate.
+
+This design choice enforces a controlled modelling environment and avoids the need for manual variable selection, while still allowing the user to explore different clinically meaningful combinations of predictors.
+
+### Diagnosis severity
+
+The original diagnosis variable in the dataset contains multiple levels corresponding to different degrees of heart disease severity.\
+The argument `severe_diag` allows the user to control how this information is used.
+
+-   When `severe_diag = FALSE`, mild and moderate diagnoses are retained, and severe cases are excluded.
+
+-   When `severe_diag = TRUE`, the dataset is restricted to the most severe cases.
+
+In both cases, the diagnosis variable is transformed into a binary response `y`, where `y = 1` indicates the presence of heart disease and `y = 0` indicates its absence. This binary structure makes the data suitable for both classification and regression-based modelling approaches.
+
+#### Example: loading the data
+```{r}
+# questo è un esempio modificare blabla 
+dat <- load_heaRt(vars = "rbp-restECG", severe_diag = FALSE)
+head(dat)
+```
+
+The returned object is of class `heaRt` and contains:
+
+-   the binary response variable `y`,
+
+-   one or two predictors,
+
+-   metadata describing the selected variables.
+
+This object is specifically designed to be used as input for the `fit()` function.
+
+## Model fitting: `fit()`
+
+The `fit()` function is a generic method designed to fit predictive models to objects of class `heaRt`. Its implementation ensures that only valid heaRt objects can be used as input, thereby preventing misuse of the modelling functions.
+
+### Choice of predictors
+
+The argument `num_var` allows the user to specify whether the model should be fitted using:
+
+-   a single predictor
+
+-   two predictors simultaneously.
+
+When two predictors are available, the logical argument `consider_first` determines whether the first or the second predictor should be used in single predictor models.
+
+### Choice of model
+
+The argument `fit_type` controls the type of model to be fitted.\
+The following methods are supported:
+
+-   Decision trees, for interpretable, rule-based classification;
+
+-   Logistic regression, for probabilistic modelling of a binary outcome;
+
+-   Random forests, for flexible, non-linear classification based on groups of decision trees;
+
+-   Linear regression, primarily included for comparison and didactic purposes.
+
+Depending on the selected model and the number of predictors, the appropriate formula is constructed internally and passed to the modelling function.
+
+### Output object and class system
+
+The fitted model, together with the data used for fitting and data about the modelling choice, is returned as an object of class `heaRt_fit`.\
+Additional classes corresponding to the underlying model (e.g. `"rpart"` or `"randomForest"`) are attached when relevant. This class structure is central to the design of the package, as it allows the `plot()` method to automatically adapt its behaviour to the type of fitted model without requiring additional input from the user.
+
+#### Example: fitting different models
+```{r}
+# questo è un esempio modificare blabla 
+mod_tree <- fit(dat, num_var = "2", fit_type = "decision.tree")
+mod_rf   <- fit(dat, num_var = "2", fit_type = "random.forest")
+mod_lm   <- fit(dat, num_var = "1", fit_type = "lm")
+mod_log  <- fit(dat, num_var = "2",
+                fit_type = "logistic.reg",
+                consider_first = FALSE)
+```
+
+Each call returns an object of class "heaRt_fit", which stores:
+
+-   the fitted model,
+
+-   the data used for fitting,
+
+-   the selected fitting method.
+
+This class structure allows automatic and method-specific plotting.
+
+## Visualisation: `plot()`
+
+The `plot()` method for `heaRt_fit` objects automatically adapts the type of visualisation to the fitted model.
+
+### Decision trees
+
+For decision tree models, `plot()` produces a graphical representation of the tree structure, showing the decision rules used to classify patients.
+
+```{r}
+# questo è un esempio modificare blabla 
+plot(mod_tree)
+```
+
+This plot helps interpret how clinical variables are used to split patients into different diagnostic groups.
+
+### Random forests
+
+For random forest models, `plot(`) displays a partial dependence plot for the first predictor. This plot shows the marginal effect of a predictor on the predicted probability of heart disease, averaging over the remaining variables.
+
+```{r}
+# questo è un esempio modificare blabla 
+# plot(mod_rf)
+```
+
+Partial dependence plots are useful for interpreting otherwise complex ensemble models.
+
+### Regression-based models
+
+For linear and logistic regression models, the type of plot depends o the number of predictors.
+
+#### Single predictor
+When a single predictor is used, the plot shows:
+
+-   the observed data points,
+
+-   the fitted regression curve.
+
+```{r}
+# questo è un esempio modificare blabla 
+# plot(mod_lm)
+```
+
+For logistic regression, the fitted curve represents the estimated
+probability of heart disease.
+
+#### Two predictors
+When two predictors are used, the data are displayed in the
+two-dimensional predictor space, with the fitted relationship overlaid.
+
+```{r}
+# questo è un esempio modificare blabla 
+# plot(mod_log)
+```
+
+All regression-based plots are produced using ggplot2, ensuring
+consistent aesthetics and easy extensibility.
