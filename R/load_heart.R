@@ -1,28 +1,52 @@
-#' Load in medical data about the diagnosis of a heart disease
+#' Load heart disease data from clinical examinations
 #'
-#' Load in medical data about medical exams done by patients in order to find out if they have an heart
-#' disease and if it's severe or no.
+#' Loads medical data derived from clinical examinations performed on patients,
+#' with the aim of analysing the presence or absence of heart disease.
+#' The function allows the user to select different pairs of clinical
+#' predictors and to focus on either mild or severe diagnoses.
 #'
-#' @param vars Either \code{"a-s"}, \code{"rbp-restECG"} or \code{"chol-mhr"} for age(1=M, 0=F)-sex,
-#' resting blood pressure-resting ECG and serum cholesterol-maximum heart rate.
+#' @usage
+#' load_heaRt(
+#'   vars = c("a-s", "rbp-restECG", "chol-mhr"),
+#'   severe_diag = FALSE
+#' )
 #'
-#' @param severe_diag Either \code{"TRUE"} or \code{"FALSE"}, to select the severe
-#' diagnosis or the normal diagnosis. Defaults to \code{"FALSE"}.
+#' @arguments
+#' \item{vars}{A character string specifying which pair of predictors to load.
+#' Possible choices are \code{"a-s"} (age and sex),
+#' \code{"rbp-restECG"} (resting blood pressure and resting ECG),
+#' or \code{"chol-mhr"} (serum cholesterol and maximum heart rate).}
 #'
-#' @returns An object of class \code{"heaRt"} which is a list of the chosen variables and the results
-#' of the diagnosis (1 = positive, 0 = negative)
+#' \item{severe_diag}{Logical. If \code{FALSE} (default), the response variable
+#' distinguishes between healthy subjects and patients with mild heart disease.
+#' If \code{TRUE}, the response focuses on severe diagnoses only.}
 #'
-#' @note A dedicated \code{\link[=fit]{fit}} function is provided for objects of class \code{"heaRt"}.
+#' @value
+#' An object of class \code{"heaRt"} containing the selected predictors and
+#' a binary response variable \code{y}, where \code{1} indicates the presence
+#' of heart disease and \code{0} indicates its absence.
 #'
-#' @export
+#' @description
+#' Downloads and preprocesses heart disease data from the UCI Machine Learning
+#' Repository. The function performs basic data cleaning, constructs a binary
+#' diagnosis variable, and returns a structured object suitable for further
+#' modelling with the \code{\link{fit}} function.
 #'
-#' @importFrom dplyr "filter" "mutate" "select"
-#' @importFrom readr "read_csv"
-#'
-#' @seealso \code{\link[=fit]{fit}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}}
+#' @note
+#' A dedicated \code{\link{fit}} method is provided for objects of class
+#' \code{"heaRt"}.
 #'
 #' @examples
-#' dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
+#' dat <- load_heaRt(vars = "rbp-restECG")
+#' dat_severe <- load_heaRt(vars = "chol-mhr", severe_diag = TRUE)
+#'
+#' @seealso
+#' \code{\link{fit}}, \code{\link{plot.heaRt_fit}}
+#'
+#' @export
+
+
+
 load_heaRt <- function(vars = c("a-s", "rbp-restECG", "chol-mhr"), severe_diag = FALSE){
 
   # the user can choose which of variables he wants to analyze from the original data

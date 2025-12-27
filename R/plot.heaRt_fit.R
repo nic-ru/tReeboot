@@ -1,33 +1,56 @@
-#' Plot heaRt output
+#' Plot heaRt fitted models
 #'
-#' Plot the different type of model from symptoms related to the diagnosis of heart disease
+#' Produces graphical representations of fitted models obtained from heart
+#' disease data. Depending on the model type, the function returns either
+#' a decision tree plot, a partial dependence plot, or a ggplot showing
+#' fitted values against the observed data.
 #'
-#' @param x An abject of class \code{"heaRt_fit"}.
+#' @usage
+#' \method{plot}{heaRt_fit}(x, ...)
 #'
-#' @param ... Catches unused arguments to \code{plot}
+#' @arguments
+#' \item{x}{An object of class \code{"heaRt_fit"} returned by the
+#' \code{\link{fit}} function.}
 #'
-#' @returns Either a ggplot, a prp plot or partial plot
+#' \item{...}{Catches unused arguments to \code{plot} (not currently implemented).}
 #'
-#' @method plot heaRt_fit
-#' @export
+#' @value
+#' A plot corresponding to the fitted model type. Decision trees are displayed
+#' using \code{rpart.plot::prp}, random forests return partial dependence plots,
+#' while linear and logistic regression models return a \code{ggplot} object
+#' invisibly, allowing further customisation.
 #'
-#' @export
-#'
-#' @importFrom ggplot2 "ggplot" "geom_point" "geom_line" "theme" "aes"
-#' @importFrom dplyr "mutate"
-#' @importFrom rpart.plot "prp"
-#' @importFrom randomForest "partialPlot"
-#' @importFrom tibble "tibble"
-#' @importFrom stats "predict"
+#' @description
+#' Visualises the relationship between selected clinical predictors and the
+#' probability of heart disease as estimated by different statistical and
+#' machine learning models.
 #'
 #' @examples
-#' \dontrun{
 #' dat <- load_heaRt(vars = "rbp-restECG")
+#'
 #' mod1 <- fit(dat, num_var = "2", fit_type = "decision.tree")
-#' mod2 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
+#' mod2 <- fit(dat, num_var = "2", fit_type = "logistic.reg",
+#'             consider_first = FALSE)
+#'
 #' plot(mod1)
 #' plot(mod2)
+#'
+#' \dontrun{
+#' library(ggplot2)
+#' p <- plot(mod2)
+#' p +
+#'   theme_minimal() +
+#'   labs(x = "Resting ECG",
+#'        y = "Predicted probability of heart disease")
 #' }
+#'
+#' @seealso
+#' \code{\link{fit}}, \code{\link{load_heaRt}}
+#'
+#' @export
+
+
+
 plot.heaRt_fit <- function(x, ...){
 
   # checking if the object is either a decision tree or a random forest

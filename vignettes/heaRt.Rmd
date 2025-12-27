@@ -21,12 +21,7 @@ library(heaRt)
 
 ## Introduction
 
-The _heaRt_ package is designed for users who want to explore heart disease
-data without dealing with complex preprocessing or model specification.
-
-The _heaRt_ package deliberately restricts the choice of predictors to
-predefined pairs of variables. This choice ensures that all models are fitted on clinically meaningful combinations of variables, that the user is not required to specify model formulas and
-that results remain easy to interpret and compare.
+The *heaRt* package is designed for users who want to explore heart disease data without dealing with complex preprocessing or model specification.
 
 The package is built around three main functions:
 
@@ -38,9 +33,7 @@ The package is built around three main functions:
 
 Typically, these functions are applied sequentially.
 
-Throughout this vignette, we will guide the reader through a complete
-workflow, from data loading to model fitting and visualisation, using
-simple and reproducible examples.
+Throughout this vignette, we will guide the reader through a complete workflow, from data loading to model fitting and visualisation, using simple and reproducible examples.
 
 ### Installation
 
@@ -72,7 +65,7 @@ The function retrieves the Cleveland Heart Disease dataset from the UCI Machine 
 
 ### Variable selection
 
-The argument vars allows the user to select one of three predefined pairs of predictors:
+The argument `vars` allows the user to select one of three predefined pairs of predictors:
 
 -   `"a-s"`: age and sex,
 
@@ -85,18 +78,19 @@ This design choice enforces a controlled modelling environment and avoids the ne
 ### Diagnosis severity
 
 The original diagnosis variable in the dataset contains multiple levels corresponding to different degrees of heart disease severity.\
-The argument `severe_diag` allows the user to control how this information is used.
+The argument `severe_diag` allows the user to control how this information is used:
 
--   When `severe_diag = FALSE`, mild and moderate diagnoses are retained, and severe cases are excluded.
+-   when `severe_diag = FALSE`, mild and moderate diagnoses are retained, and severe cases are excluded,
 
--   When `severe_diag = TRUE`, the dataset is restricted to the most severe cases.
+-   when `severe_diag = TRUE`, the dataset is restricted to the most severe cases.
 
 In both cases, the diagnosis variable is transformed into a binary response `y`, where `y = 1` indicates the presence of heart disease and `y = 0` indicates its absence. This binary structure makes the data suitable for both classification and regression-based modelling approaches.
 
 #### Example: loading the data
+
 ```{r}
 # questo è un esempio modificare blabla 
-dat <- load_heaRt(vars = "rbp-restECG", severe_diag = FALSE)
+dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
 head(dat)
 ```
 
@@ -112,13 +106,13 @@ This object is specifically designed to be used as input for the `fit()` functio
 
 ## Model fitting: `fit()`
 
-The `fit()` function is a generic method designed to fit predictive models to objects of class `heaRt`. Its implementation ensures that only valid heaRt objects can be used as input, thereby preventing misuse of the modelling functions.
+The `fit()` function is a generic method designed to fit predictive models to objects of class `heaRt`. Its implementation ensures that only valid `heaRt` objects can be used as input, thereby preventing misuse of the modelling functions.
 
 ### Choice of predictors
 
 The argument `num_var` allows the user to specify whether the model should be fitted using:
 
--   a single predictor
+-   a single predictor,
 
 -   two predictors simultaneously.
 
@@ -145,6 +139,7 @@ The fitted model, together with the data used for fitting and data about the mod
 Additional classes corresponding to the underlying model (e.g. `"rpart"` or `"randomForest"`) are attached when relevant. This class structure is central to the design of the package, as it allows the `plot()` method to automatically adapt its behaviour to the type of fitted model without requiring additional input from the user.
 
 #### Example: fitting different models
+
 ```{r}
 # questo è un esempio modificare blabla 
 mod_tree <- fit(dat, num_var = "2", fit_type = "decision.tree")
@@ -198,7 +193,7 @@ For random forest models, `plot(`) displays a partial dependence plot for the fi
 
 ```{r}
 # questo è un esempio modificare blabla 
-# plot(mod_rf)
+plot(mod_rf)
 ```
 
 Partial dependence plots are useful for interpreting otherwise complex ensemble models.
@@ -208,6 +203,7 @@ Partial dependence plots are useful for interpreting otherwise complex ensemble 
 For linear and logistic regression models, the type of plot depends o the number of predictors.
 
 #### Single predictor
+
 When a single predictor is used, the plot shows:
 
 -   the observed data points,
@@ -219,12 +215,11 @@ When a single predictor is used, the plot shows:
 # plot(mod_lm)
 ```
 
-For logistic regression, the fitted curve represents the estimated
-probability of heart disease.
+For logistic regression, the fitted curve represents the estimated probability of heart disease.
 
 #### Two predictors
-When two predictors are used, the data are displayed in the
-two-dimensional predictor space, with the fitted relationship overlaid.
+
+When two predictors are used, the data are displayed in the two-dimensional predictor space, with the fitted relationship overlaid.
 
 ```{r}
 # questo è un esempio modificare blabla 
@@ -237,17 +232,16 @@ two-dimensional predictor space, with the fitted relationship overlaid.
 #One of the advantages of heaRt is that different models can be fitted
 #to the same data with minimal changes to the code.
 
-dat <- load_heaRt("chol-mhr")
+#dat <- load_heaRt("chol-mhr")
 
-mod_lm  <- fit(dat, "2", "lm")
-mod_log <- fit(dat, "2", "logistic.reg")
-mod_rf  <- fit(dat, "2", "random.forest")
+#mod_lm  <- fit(dat, "2", "lm")
+#mod_log <- fit(dat, "2", "logistic.reg")
+#mod_rf  <- fit(dat, "2", "random.forest")
 
 
-plot(mod_lm)
-plot(mod_log)
-plot(mod_rf)
+#plot(mod_lm)
+#plot(mod_log)
+#plot(mod_rf)
 ```
 
-All regression-based plots are produced using ggplot2, ensuring
-consistent aesthetics and easy extensibility.
+All regression-based plots are produced using ggplot2, ensuring consistent aesthetics and easy extensibility.
