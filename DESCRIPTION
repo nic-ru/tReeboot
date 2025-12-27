@@ -27,6 +27,8 @@ RoxygenNote: 7.3.3
 Date: 2025-12-26
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
+Config/testthat/edition: 3
