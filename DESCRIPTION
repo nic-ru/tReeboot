@@ -1,30 +1,28 @@
-Package: heaRt
 Type: Package
+Package: heaRt
 Title: Load and analyse heart disease clinical data
 Version: 0.1.1
+Date: 2025-12-26
 Authors@R: c(
-    person("Nicola", "Ruaro", email = "nicolai.ruaro@gmail.com", role = c("aut", "cre")),
-    person("Lucrezia", "Bonifazi", email = "lucrezia.bonifazi.2026@mumail.ie", role = c("aut")),
-    person("Anna", "Signorini", email = "anna.signorini.2026@mumail.ie", role = c("aut"))
-    )
-Description:  This package provides tools to load and analyse clinical data related to heart disease 
-              diagnoses and patient medical examinations. Users can fit different statistical and 
-              machine learning models to the data and visualise the results using dedicated plotting 
-              functions.
+    person("Nicola", "Ruaro", , "nicolai.ruaro@gmail.com", role = c("aut", "cre")),
+    person("Lucrezia", "Bonifazi", , "lucrezia.bonifazi.2026@mumail.ie", role = "aut"),
+    person("Anna", "Signorini", , "anna.signorini.2026@mumail.ie", role = "aut")
+  )
+Description: This package provides tools to load and analyse clinical data
+    related to heart disease diagnoses and patient medical examinations.
+    Users can fit different statistical and machine learning models to the
+    data and visualise the results using dedicated plotting functions.
 License: GPL (>= 3)
-Depends: R (>= 4.5.0)
+Depends: 
+    R (>= 4.5.0)
 Imports: 
     dplyr,
     ggplot2,
-    readr,
     randomForest,
+    readr,
     rpart,
     rpart.plot,
     tibble
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.3.3
-Date: 2025-12-26
 Suggests: 
     knitr,
     rmarkdown,
@@ -32,3 +30,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-GB
+LazyData: true
+RoxygenNote: 7.3.3
