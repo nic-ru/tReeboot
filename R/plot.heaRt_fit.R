@@ -48,28 +48,26 @@ plot.heaRt_fit <- function(x, ...){
   dat <- x$data
 
   if(ncol(dat) == 2) {
-    names(dat)[2] <- "x"
-    #dat <- dat |>
-     # dplyr::rename(x = dat[[2]])
 
-    predictor <- pretty(dat$x)
+    predictor <- seq(min(dat$var1, na.rm = TRUE),
+                     max(dat$var1, na.rm = TRUE),
+                     length.out = 100)
 
     fits <- switch(x$fit_type,
                   lm = {
-                    tibble::tibble(x = predictor, pred = as.numeric(stats::predict(x$model,
-                                                                    newdata = tibble::tibble(x=predictor))))
+                    tibble::tibble(var1 = predictor, pred = as.numeric(stats::predict(x$model,
+                                                                    newdata = tibble::tibble(var1=predictor))))
                   },
                   logistic.reg = {
-                    tibble::tibble(x = predictor, pred = as.numeric(stats::predict(x$model,
-                                                                    newdata = tibble::tibble(x=predictor),
-                                                                    type = "response")))
+                    tibble::tibble(var1 = predictor, pred = as.numeric(stats::predict(x$model,
+                                                                    newdata = tibble::tibble(var1=predictor))))
                   })
 
 
-    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = x, y = y, color = y)) +
+    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = y, color = y)) +
           ggplot2::geom_point() +
-          ggplot2::geom_line(data = fits, ggplot2::aes(x = x, y = pred), inherit.aes = FALSE) +
-          ggplot2::theme(legend.position = "None")
+          ggplot2::geom_line(data = fits, ggplot2::aes(x = var1, y = pred), inherit.aes = FALSE) +
+          ggplot2::theme(legend.position = "none")
 
     return(p)
   }
@@ -94,7 +92,7 @@ plot.heaRt_fit <- function(x, ...){
     p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = var2, color = y)) +
       ggplot2::geom_point() +
       ggplot2::geom_line(data = fits, ggplot2::aes(x = var1, y = pred), inherit.aes = FALSE) +
-      ggplot2::theme(legend.position = "None")
+      ggplot2::theme(legend.position = "none")
 
     return(p)
   }
