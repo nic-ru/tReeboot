@@ -42,7 +42,7 @@ Throughout this vignette, we will guide the reader through a complete workflow, 
 Once in R you can type at the R command prompt:
 
 ```{r, eval=FALSE}
-install.packages('devtools')
+# install.packages('devtools')
 devtools::install_github('nic-ru/heaRt')
 ```
 
