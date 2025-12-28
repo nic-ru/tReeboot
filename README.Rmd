@@ -64,9 +64,9 @@ This is a basic example which shows how to fit a logistic regression model to cl
 library(heaRt)
 # modificare quando funziona
 model <- fit(
-  load_heaRt(vars = "rbp-restECG"),
+  load_heaRt(vars = "chol-mhr"),
   num_var = "2",
-  fit_type = "logistic.reg"
+  fit_type = "decision.tree"
 )
 ```
 
@@ -76,7 +76,7 @@ Subsequently, a graphical representation of the fitted model can be created:
 
 ```{r example2}
 # chimare il modello come quello della vignetta
-p <- plot(model)
+plot(model)
 ```
 
 A more thorough introduction is provided in the `heaRt` vignette.

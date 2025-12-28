@@ -229,7 +229,7 @@ plot(mod_log)
 
 #### lm and logistic regression
 
-```{r, out.width="50%", fig.show='hold'}
+```{r}
 # LALALA CONTROLLARE
 ## Comparing different models
 
@@ -250,7 +250,7 @@ plot(mod_log2)
 
 #### decision tree and random forest
 
-```{r, out.width="50%", fig.show='hold'}
+```{r}
 plot(mod_tree2)
 plot(mod_rf2)
 ```

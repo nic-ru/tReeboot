@@ -56,11 +56,38 @@ resting ECG measurements:
 ``` r
 library(heaRt)
 # modificare quando funziona
-#model <- fit(
-  #load_heaRt(vars = "rbp-restECG"),
-  #num_var = "2",
-  #fit_type = "logistic.reg"
-#)
+model <- fit(
+  load_heaRt(vars = "chol-mhr"),
+  num_var = "2",
+  fit_type = "decision.tree"
+)
+#> Rows: 303 Columns: 14
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> dbl (14): X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> n= 255 
+#> 
+#> node), split, n, deviance, yval
+#>       * denotes terminal node
+#> 
+#>  1) root 255 58.5254900 0.35686270  
+#>    2) var2>=147.5 162 28.0000000 0.22222220  
+#>      4) var2>=161.5 96 12.6562500 0.15625000  
+#>        8) var1< 279.5 76  7.9342110 0.11842110 *
+#>        9) var1>=279.5 20  4.2000000 0.30000000  
+#>         18) var1>=301 12  0.9166667 0.08333333 *
+#>         19) var1< 301 8  1.8750000 0.62500000 *
+#>      5) var2< 161.5 66 14.3181800 0.31818180 *
+#>    3) var2< 147.5 93 22.4731200 0.59139780  
+#>      6) var1< 235.5 41  9.9512200 0.41463410 *
+#>      7) var1>=235.5 52 10.2307700 0.73076920  
+#>       14) var2>=120.5 37  8.4324320 0.64864860  
+#>         28) var2< 139.5 15  3.7333330 0.46666670 *
+#>         29) var2>=139.5 22  3.8636360 0.77272730 *
+#>       15) var2< 120.5 15  0.9333333 0.93333330 *
 ```
 
 Note that the data are dynamically obtained from the UCI Machine
@@ -71,8 +98,10 @@ Subsequently, a graphical representation of the fitted model can be
 created:
 
 ``` r
-# chimare il modello come quelllo della vignetta
-#p <- plot(model)
+# chimare il modello come quello della vignetta
+plot(model)
 ```
+
+<img src="man/figures/README-example2-1.png" width="100%" />
 
 A more thorough introduction is provided in the `heaRt` vignette.
