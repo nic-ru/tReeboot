@@ -47,7 +47,7 @@ plot.heaRt_fit <- function(x, ...){
 
   if(ncol(dat) == 2) {
 
-    predictor <- pretty(dat$var1)
+    predictor <- dat$var1
 
     fits <- switch(x$fit_type,
                   lm = {
@@ -71,7 +71,7 @@ plot.heaRt_fit <- function(x, ...){
 
   if(ncol(dat) == 3){
 
-    predictor <- pretty(dat$var1)
+    predictor <- dat$var1
 
     fits <- switch(x$fit_type,
                    lm = {
