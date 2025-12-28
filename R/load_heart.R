@@ -1,7 +1,8 @@
-#' Load in medical data about the diagnosis of a heart disease
+#' Load medical data for heart disease diagnosis
 #'
-#' Load in medical data about medical exams done by patients in order to find out if they have an heart
-#' disease and if it's severe or no.
+#' Loads and preprocesses clinical data from medical examinations performed on patients,
+#' with the aim of predicting the presence of heart disease and distinguishing between
+#' mild and severe diagnoses.
 #'
 #' @param vars Either \code{"a-s"}, \code{"rbp-restECG"} or \code{"chol-mhr"} for age(1=M, 0=F)-sex,
 #' resting blood pressure-resting ECG and serum cholesterol-maximum heart rate.

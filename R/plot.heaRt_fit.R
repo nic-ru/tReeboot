@@ -1,6 +1,7 @@
-#' Plot heaRt output
+#' Plot heaRt model output
 #'
-#' Plot the different type of model from symptoms related to the diagnosis of heart disease
+#' Visualises fitted models describing the relationship between selected clinical
+#' variables and the diagnosis of heart disease.
 #'
 #' @param x An abject of class \code{"heaRt_fit"}.
 #'
