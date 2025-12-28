@@ -9,7 +9,7 @@
 #'
 #' @returns Either a ggplot, a prp plot or partial plot.
 #'
-#' @method plot heaRt_fit.
+#' @method plot heaRt_fit
 #' @export
 #'
 #' @export

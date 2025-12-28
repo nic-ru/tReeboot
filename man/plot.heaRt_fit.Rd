@@ -9,13 +9,14 @@
 \arguments{
 \item{x}{An abject of class \code{"heaRt_fit"}.}
 
-\item{...}{Catches unused arguments to \code{plot}}
+\item{...}{Catches unused arguments to \code{plot}.}
 }
 \value{
-Either a ggplot, a prp plot or partial plot
+Either a ggplot, a prp plot or partial plot.
 }
 \description{
-Plot the different type of model from symptoms related to the diagnosis of heart disease
+Plot the different type of model from symptoms related to the diagnosis
+of heart disease.
 }
 \examples{
 \dontrun{

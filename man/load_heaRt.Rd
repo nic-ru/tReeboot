@@ -7,25 +7,28 @@
 load_heaRt(vars = c("a-s", "rbp-restECG", "chol-mhr"), severe_diag = FALSE)
 }
 \arguments{
-\item{vars}{Either \code{"a-s"}, \code{"rbp-restECG"} or \code{"chol-mhr"} for age(1=M, 0=F)-sex,
-resting blood pressure-resting ECG and serum cholesterol-maximum heart rate.}
+\item{vars}{Either \code{"a-s"}, \code{"rbp-restECG"} or \code{"chol-mhr"}
+for age(1=M, 0=F)-sex, resting blood pressure-resting ECG and serum
+cholesterol-maximum heart rate.}
 
 \item{severe_diag}{Either \code{"TRUE"} or \code{"FALSE"}, to select the severe
 diagnosis or the normal diagnosis. Defaults to \code{"FALSE"}.}
 }
 \value{
-An object of class \code{"heaRt"} which is a list of the chosen variables and the results
-of the diagnosis (1 = positive, 0 = negative)
+An object of class \code{"heaRt"} which is a list of the chosen
+variables and the results of the diagnosis (1 = positive, 0 = negative).
 }
 \description{
-Loads and preprocesses clinical data from medical examinations performed on patients,
-with the aim of predicting the presence of heart disease and distinguishing between
-mild and severe diagnoses.
+Loads and preprocesses clinical data from medical examinations performed on
+patients, with the aim of predicting the presence of heart disease and
+distinguishing between mild and severe diagnoses.
 }
 \note{
-A dedicated \code{\link[=fit]{fit}} function is provided for objects of class \code{"heaRt"}.
+A dedicated \code{\link[=fit]{fit}} function is provided for objects
+of class \code{"heaRt"}.
 }
 \examples{
+library(heaRt)
 dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
 }
 \seealso{
