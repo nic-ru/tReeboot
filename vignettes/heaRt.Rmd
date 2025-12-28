@@ -222,25 +222,37 @@ When two predictors are used, the data are displayed in the two-dimensional pred
 
 ```{r}
 # questo è un esempio modificare blabla 
-#plot(mod_log)
+plot(mod_log)
+```
 
+### Comparing different models
 
+#### lm and logistic regression
+
+```{r, out.width="50%", fig.show='hold'}
 # LALALA CONTROLLARE
 ## Comparing different models
 
 #One of the advantages of heaRt is that different models can be fitted
 #to the same data with minimal changes to the code.
 
-#dat <- load_heaRt("chol-mhr")
+dat <- load_heaRt("a-s")
 
-#mod_lm  <- fit(dat, "2", "lm")
-#mod_log <- fit(dat, "2", "logistic.reg")
-#mod_rf  <- fit(dat, "2", "random.forest")
+mod_lm2  <- fit(dat, "2", "lm")
+mod_log2 <- fit(dat, "2", "logistic.reg")
+mod_tree2 <- fit(dat, "2", "decision.tree")
+mod_rf2  <- fit(dat, "2", "random.forest")
 
 
-#plot(mod_lm)
-#plot(mod_log)
-#plot(mod_rf)
+plot(mod_lm2)
+plot(mod_log2)
+```
+
+#### decision tree and random forest
+
+```{r, out.width="50%", fig.show='hold'}
+plot(mod_tree2)
+plot(mod_rf2)
 ```
 
 All regression-based plots are produced using ggplot2, ensuring consistent aesthetics and easy extensibility.

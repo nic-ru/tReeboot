@@ -63,11 +63,11 @@ This is a basic example which shows how to fit a logistic regression model to cl
 ```{r example}
 library(heaRt)
 # modificare quando funziona
-#model <- fit(
-  #load_heaRt(vars = "rbp-restECG"),
-  #num_var = "2",
-  #fit_type = "logistic.reg"
-#)
+model <- fit(
+  load_heaRt(vars = "rbp-restECG"),
+  num_var = "2",
+  fit_type = "logistic.reg"
+)
 ```
 
 Note that the data are dynamically obtained from the UCI Machine Learning Repository, hence the need for `load_heaRt()` to always access the original clinical dataset.
@@ -75,8 +75,8 @@ Note that the data are dynamically obtained from the UCI Machine Learning Reposi
 Subsequently, a graphical representation of the fitted model can be created:
 
 ```{r example2}
-# chimare il modello come quelllo della vignetta
-#p <- plot(model)
+# chimare il modello come quello della vignetta
+p <- plot(model)
 ```
 
 A more thorough introduction is provided in the `heaRt` vignette.
