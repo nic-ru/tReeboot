@@ -31,19 +31,17 @@
 #' }
 plot.heaRt_fit <- function(x, ...){
 
-  # checking if the object is either a decision tree or a random forest
+  # Checking if the object is a decision tree or a random forest
   if(x$fit_type == "decision.tree")
     return(rpart.plot::prp(x$model, type = 2, extra = 0, roundint=FALSE))
 
-  # it'll print a partial plot considering always the first variable
+  # It prints a partial dependence plot, always considering the first variable
   if(x$fit_type == "random.forest"){
     dat <- x$data
     return(randomForest::partialPlot(x$model, dat, var1))
     }
 
-
-  # checking how many variables are we working with
-
+  # Determining the number of variables in the model
   dat <- x$data
 
   if(ncol(dat) == 2) {

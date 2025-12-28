@@ -89,8 +89,10 @@ In both cases, the diagnosis variable is transformed into a binary response `y`,
 #### Example: loading the data
 
 ```{r}
-# questo è un esempio modificare blabla 
 dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
+```
+
+```{r}
 head(dat)
 ```
 
@@ -116,20 +118,20 @@ The argument `num_var` allows the user to specify whether the model should be fi
 
 -   two predictors simultaneously.
 
-When two predictors are available, the logical argument `consider_first` determines whether the first or the second predictor should be used in single predictor models.
+When the number of predictors is equal to two, the logical argument `consider_first` determines whether the first or the second predictor should be used in single predictor models.
 
 ### Choice of model
 
 The argument `fit_type` controls the type of model to be fitted.\
 The following methods are supported:
 
--   Decision trees, for interpretable, rule-based classification;
+-   decision trees, for interpretable, rule-based classification;
 
--   Logistic regression, for probabilistic modelling of a binary outcome;
+-   logistic regression, for probabilistic modelling of a binary outcome;
 
--   Random forests, for flexible, non-linear classification based on groups of decision trees;
+-   random forests, for non-linear classification based on groups of decision trees;
 
--   Linear regression, primarily included for comparison and didactic purposes.
+-   linear regression, primarily included for comparison and didactic purposes.
 
 Depending on the selected model and the number of predictors, the appropriate formula is constructed internally and passed to the modelling function.
 
@@ -141,29 +143,34 @@ Additional classes corresponding to the underlying model (e.g. `"rpart"` or `"ra
 #### Example: fitting different models
 
 ```{r, warning=FALSE}
+# Decision tree 
 mod_tree <- fit(dat, num_var = "2", fit_type = "decision.tree")
 
+# Random forest
 mod_rf   <- fit(dat, num_var = "2", fit_type = "random.forest")
 
+# Linear model
 mod_lm   <- fit(dat, num_var = "1", fit_type = "lm")
 
+# Logistic regression
 mod_log  <- fit(dat, num_var = "2", fit_type = "logistic.reg", 
                 consider_first = FALSE)
 ```
 
 #### Common mistakes avoided by heaRt
 
-This would normally require manual formula specification:
-`glm(y ~ rbp + restECG, family = binomial)`
+Normally, manual formula specification is required for examples like:
+`glm(y ~ rbp + restECG, family = binomial)`.
 
 With heaRt, the structure is applied automatically:
 
 ```{r}
 dat <- load_heaRt("rbp-restECG")
+
 mod <- fit(dat, num_var = "2", fit_type = "logistic.reg")
 ```
 
-Each call returns an object of class "heaRt_fit", which stores:
+Each call returns an object of class `heaRt_fit`, which stores:
 
 -   the fitted model,
 
@@ -199,7 +206,7 @@ Partial dependence plots are useful for interpreting otherwise complex ensemble 
 
 ### Regression-based models
 
-For linear and logistic regression models, the type of plot depends o the number of predictors.
+For linear and logistic regression models, the type of plot depends on the number of predictors.
 
 #### Single predictor
 
@@ -215,30 +222,38 @@ plot(mod_lm)
 
 For logistic regression, the fitted curve represents the estimated probability of heart disease.
 
-#### Two predictors
-
-When two predictors are used, the data are displayed in the two-dimensional predictor space, with the fitted relationship overlaid.
-
 ```{r, fig.width=6, fig.height=6}
 plot(mod_log)
 ```
 
-### Comparing different models
+#### Two predictors
 
-#### lm and logistic regression
+When two predictors are used, the data are displayed in the two-dimensional predictor space, with the fitted relationship overlaid.
+
+### Comparing different models
 
 One of the advantages of heaRt is that different models can be fitted
 to the same data with minimal changes to the code.
 
-```{r, fig.width=6, fig.height=6}
+```{r}
 dat <- load_heaRt("a-s")
 
+# Linear model
 mod_lm2  <- fit(dat, "2", "lm")
+
+# Logistic regression
 mod_log2 <- fit(dat, "2", "logistic.reg")
+
+# Decision tree
 mod_tree2 <- fit(dat, "2", "decision.tree")
+
+# Random forest
 mod_rf2  <- fit(dat, "2", "random.forest")
+```
 
+#### Linear model and logistic regression
 
+```{r, fig.width=6, fig.height=6}
 plot(mod_lm2)
 plot(mod_log2)
 ```
@@ -253,4 +268,4 @@ plot(mod_tree2)
 plot(mod_rf2)
 ```
 
-All regression-based plots are produced using ggplot2, ensuring consistent aesthetics and easy extensibility.
+All regression-based plots are produced using `ggplot2`, ensuring consistent aesthetics and easy extensibility.

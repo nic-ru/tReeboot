@@ -61,12 +61,12 @@ fit.heaRt <- function(obj, num_var = c("1", "2"),
   if(!inherits(obj, "heaRt"))
     stop("This function only works on objects of class \"heaRt\"")
 
-  # with the param "num_var" the user can choose the number of variable in the model(up to two)
-  # and with the param "consider_first" can choose if considering the first of the two or no
+  # With the parameter "num_var" the user can choose the number of variables in the model (up to two)
+  # the parameter "consider_first" specifies whether the first of the two variables should be included
 
   num_var <- match.arg(num_var)
 
-  # choosing the type of fitting model
+  # Choosing the type of fitting model
   fit_type <- match.arg(fit_type)
 
   y <- obj$y
@@ -81,9 +81,9 @@ fit.heaRt <- function(obj, num_var = c("1", "2"),
 
   if(consider_first == FALSE)
     data <- data |> dplyr::select(y, var2) |> dplyr::rename(var1 = var2)
-  # easier to plot the random forest
+  # this step makes random forest models easier to plot
 
-  # fitting the model
+  # Fitting the model:
 
   if(num_var == "1")
     mod <- switch(fit_type,
@@ -140,8 +140,8 @@ fit.heaRt <- function(obj, num_var = c("1", "2"),
                  method = NULL)
   attr(output, "source") <- attr(obj, "source")
 
-  # checking if the fitted model is either a decision tree or a random forest,
-  # it'll be useful when plotting
+  # Checking if the fitted model is a decision tree or a random forest,
+  # this information is used later for plotting
   if(fit_type %in% c("decision.tree", "random.forest"))
     output$method <- "class"
 

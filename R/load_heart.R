@@ -30,26 +30,26 @@
 load_heaRt <- function(vars = c("a-s", "rbp-restECG", "chol-mhr"),
                        severe_diag = FALSE){
 
-  # the user can choose which of variables he wants to analyze from the original data
+  # The user can select the variables to analyze from the original data
 
   vars <-  match.arg(vars)
 
   heart_url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data"
 
-  # getting the data and organizing them in a nice way
+  # Loading the data and organizing them in a clear structure
   heart_dat <- readr::read_csv(heart_url, col_names = FALSE, na = "?")
 
   colnames(heart_dat) <- c("age", "sex", "cp", "rbp", "chol", "fbs",
                              "restECG", "mhr", "eia", "oldpeak",
                              "slope", "ca", "thal", "diagnosis")
 
-  # filtering the data, the user can choose if he wants to analyze more or less severe diagnosis
+  # Filtering the data to allow the user to select between more or less severe diagnoses
   if(severe_diag == FALSE)
     heart_dat <- heart_dat |> dplyr::filter(diagnosis != 3 & diagnosis != 4)
   else
     heart_dat <- heart_dat |> dplyr::filter(diagnosis != 1 & diagnosis != 2)
 
-  # extracting the variable the user choose from the original data
+  # Extracting the variable selected by the user from the original dataset
   heart_dat <- switch(vars,
                       "a-s" = {
                         heart_dat |>
