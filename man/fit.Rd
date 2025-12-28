@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit.heaRt.R
 \name{fit}
 \alias{fit}
-\title{Fit some machine learning algorithm}
+\title{Fit statistical and machine learning models to heart disease data}
 \usage{
 fit(
   obj,
@@ -12,41 +12,40 @@ fit(
   ...
 )
 }
-\arguments{
-\item{obj}{An object of class \code{heaRt}}
-
-\item{num_var}{The number of variable the function will consider when fitting the model, either
-1 or 2.}
-
-\item{fit_type}{The type of algorithm requested, either decision tree (\code{"decision.tree"}),
-logistic regression (\code{"logistic.reg"}), random forest (\code{"random.forest"}) or
-linear model (\code{"lm"}).}
-
-\item{consider_first}{The option of considering the first of the two variables, either
-\code{"TRUE"} or \code{"FALSE"}, Defaults to \code{"TRUE"}.}
-
-\item{...}{Catches unused arguments to \code{fit},}
-}
-\value{
-An object of class \code{"heaRt_fit"} which includes the model details
-as well as the data set and \code{fit_type} used.
-}
 \description{
-Fit either decision tree, logistic regression, random forest or linear model of heart data with the
-variable diagnosis(y) as the response.
+Fits decision tree, logistic regression, random forest, or linear
+regression models to heart disease data. The function automatically
+constructs the appropriate model formula based on the selected options,
+removing the need for manual specification by the user.
+}
+\details{
+Fits several statistical and machine learning models to heart disease
+data previously loaded with \code{\link{load_heaRt}}. The response
+variable is the binary diagnosis indicator \code{y}, while one or two
+clinical predictors are used as explanatory variables.
+
+The function is implemented as an S3 generic, with a dedicated method
+for objects of class \code{"heaRt"}.
 }
 \note{
-A dedicated \code{\link[=plot.heaRt_fit]{plot}} method is provided
-for objects of class \code{"heaRt_fit"}.
+A dedicated \code{\link[=plot.heaRt_fit]{plot}} method is provided for
+objects of class \code{"heaRt_fit"}, which produces model-specific
+visualisations.
 }
 \examples{
 dat <- load_heaRt(vars = "rbp-restECG")
+
+# Fit different models to the same data
 mod1 <- fit(dat, num_var = "2", fit_type = "decision.tree")
 mod2 <- fit(dat, num_var = "2", fit_type = "random.forest")
 mod3 <- fit(dat, num_var = "1", fit_type = "lm")
-mod4 <- fit(dat, num_var = "2", fit_type = "logistic.reg", consider_first = FALSE)
+mod4 <- fit(dat, num_var = "2",
+            fit_type = "logistic.reg",
+            consider_first = FALSE)
+
 }
 \seealso{
-@seealso \code{\link[=load_heaRt]{load_heaRt}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}},
-\code{\link[stats]{lm}}, \code{\link[rpart]{rpart}}, \code{\link[stats]{glm}}, \code{\link[randomForest]{randomForest}}
+\code{\link{load_heaRt}}, \code{\link{plot.heaRt_fit}},
+\code{\link[stats]{lm}}, \code{\link[stats]{glm}},
+\code{\link[rpart]{rpart}}, \code{\link[randomForest]{randomForest}}
 }

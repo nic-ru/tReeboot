@@ -2,31 +2,34 @@
 % Please edit documentation in R/load_heart.R
 \name{load_heaRt}
 \alias{load_heaRt}
-\title{Load in medical data about the diagnosis of a heart disease}
+\title{Load heart disease data from clinical examinations}
 \usage{
-load_heaRt(vars = c("a-s", "rbp-restECG", "chol-mhr"), severe_diag = FALSE)
-}
-\arguments{
-\item{vars}{Either \code{"a-s"}, \code{"rbp-restECG"} or \code{"chol-mhr"} for age(1=M, 0=F)-sex,
-resting blood pressure-resting ECG and serum cholesterol-maximum heart rate.}
-
-\item{severe_diag}{Either \code{"TRUE"} or \code{"FALSE"}, to select the severe
-diagnosis or the normal diagnosis. Defaults to \code{"FALSE"}.}
-}
-\value{
-An object of class \code{"heaRt"} which is a list of the chosen variables and the results
-of the diagnosis (1 = positive, 0 = negative)
+load_heaRt(
+  vars = c("a-s", "rbp-restECG", "chol-mhr"),
+  severe_diag = FALSE
+)
 }
 \description{
-Load in medical data about medical exams done by patients in order to find out if they have an heart
-disease and if it's severe or no.
+Downloads and preprocesses heart disease data from the UCI Machine Learning
+Repository. The function performs basic data cleaning, constructs a binary
+diagnosis variable, and returns a structured object suitable for further
+modelling with the \code{\link{fit}} function.
+}
+\details{
+Loads medical data derived from clinical examinations performed on patients,
+with the aim of analysing the presence or absence of heart disease.
+The function allows the user to select different pairs of clinical
+predictors and to focus on either mild or severe diagnoses.
 }
 \note{
-A dedicated \code{\link[=fit]{fit}} function is provided for objects of class \code{"heaRt"}.
+A dedicated \code{\link{fit}} method is provided for objects of class
+\code{"heaRt"}.
 }
 \examples{
-dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
+dat <- load_heaRt(vars = "rbp-restECG")
+dat_severe <- load_heaRt(vars = "chol-mhr", severe_diag = TRUE)
+
 }
 \seealso{
-\code{\link[=fit]{fit}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}}
+\code{\link{fit}}, \code{\link{plot.heaRt_fit}}
 }
