@@ -1,7 +1,6 @@
-#' Plot heaRt model output
+#' Plot heaRt output
 #'
-#' Visualises fitted models describing the relationship between selected clinical
-#' variables and the diagnosis of heart disease.
+#' Plot the different type of model from symptoms related to the diagnosis of heart disease
 #'
 #' @param x An abject of class \code{"heaRt_fit"}.
 #'
@@ -48,9 +47,7 @@ plot.heaRt_fit <- function(x, ...){
 
   if(ncol(dat) == 2) {
 
-    predictor <- seq(min(dat$var1, na.rm = TRUE),
-                     max(dat$var1, na.rm = TRUE),
-                     length.out = 100)
+    predictor <- pretty(dat$var1)
 
     fits <- switch(x$fit_type,
                   lm = {
@@ -59,11 +56,12 @@ plot.heaRt_fit <- function(x, ...){
                   },
                   logistic.reg = {
                     tibble::tibble(var1 = predictor, pred = as.numeric(stats::predict(x$model,
-                                                                    newdata = tibble::tibble(var1=predictor))))
+                                                                    newdata = tibble::tibble(var1=predictor),
+                                                                    type = "response")))
                   })
 
 
-    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = y, color = y)) +
+    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = y, color = factor(y))) +
           ggplot2::geom_point() +
           ggplot2::geom_line(data = fits, ggplot2::aes(x = var1, y = pred), inherit.aes = FALSE) +
           ggplot2::theme(legend.position = "none")
@@ -84,11 +82,12 @@ plot.heaRt_fit <- function(x, ...){
                    logistic.reg = {
                      tibble::tibble(var1 = predictor, pred = as.numeric(stats::predict(x$model,
                                                             newdata = tibble::tibble(var1=predictor,
-                                                                                     var2=mean(dat$var2)))))
+                                                                                     var2=mean(dat$var2)),
+                                                            type = "response")))
                    })
 
 
-    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = var2, color = y)) +
+    p <- ggplot2::ggplot(data = dat, ggplot2::aes(x = var1, y = var2, color = factor(y))) +
       ggplot2::geom_point() +
       ggplot2::geom_line(data = fits, ggplot2::aes(x = var1, y = pred), inherit.aes = FALSE) +
       ggplot2::theme(legend.position = "none")

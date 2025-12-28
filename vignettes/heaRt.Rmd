@@ -37,7 +37,7 @@ Throughout this vignette, we will guide the reader through a complete workflow, 
 
 ### Installation
 
-**heaRt** 33333will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a nice desktop environment for using R is also recommended.
+**heaRt** will run in Windows, Mac OS X, or Linux. To install it you first need to install [R](https://cran.r-project.org/). Installing [RStudio](https://www.rstudio.com/) as a nice desktop environment for using R is also recommended.
 
 Once in R you can type at the R command prompt:
 
@@ -145,8 +145,7 @@ Additional classes corresponding to the underlying model (e.g. `"rpart"` or `"ra
 mod_tree <- fit(dat, num_var = "2", fit_type = "decision.tree")
 mod_rf   <- fit(dat, num_var = "2", fit_type = "random.forest")
 mod_lm   <- fit(dat, num_var = "1", fit_type = "lm")
-mod_log  <- fit(dat, num_var = "2",
-                fit_type = "logistic.reg",
+mod_log  <- fit(dat, num_var = "2", fit_type = "logistic.reg", 
                 consider_first = FALSE)
 
 
@@ -212,7 +211,7 @@ When a single predictor is used, the plot shows:
 
 ```{r}
 # questo è un esempio modificare blabla 
-# plot(mod_lm)
+plot(mod_lm)
 ```
 
 For logistic regression, the fitted curve represents the estimated probability of heart disease.
@@ -223,7 +222,7 @@ When two predictors are used, the data are displayed in the two-dimensional pred
 
 ```{r}
 # questo è un esempio modificare blabla 
-# plot(logistic.reg)
+#plot(mod_log)
 
 
 # LALALA CONTROLLARE
