@@ -15,8 +15,7 @@
 Either a ggplot, a prp plot or partial plot
 }
 \description{
-Visualises fitted models describing the relationship between selected clinical
-variables and the diagnosis of heart disease.
+Plot the different type of model from symptoms related to the diagnosis of heart disease
 }
 \examples{
 \dontrun{
