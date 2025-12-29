@@ -138,7 +138,7 @@ Depending on the selected model and the number of predictors, the appropriate fo
 ### Output object and class system
 
 The fitted model, together with the data used for fitting and data about the modelling choice, is returned as an object of class `heaRt_fit`.\
-Additional classes corresponding to the underlying model (e.g. `"rpart"` or `"randomForest"`) are attached when relevant. This class structure is central to the design of the package, as it allows the `plot()` method to automatically adapt its behaviour to the type of fitted model without requiring additional input from the user.
+Additional classes corresponding to the underlying model (e.g. `"rpart"` or `"randomForest"`) are attached when relevant. This class structure is central to the design of the package, as it allows the `plot()` method to automatically adapt its behavior to the type of fitted model without requiring additional input from the user.
 
 #### Example: fitting different models
 
