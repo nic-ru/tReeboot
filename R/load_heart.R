@@ -14,7 +14,7 @@
 #' @returns An object of class \code{"heaRt"} which is a list of the chosen
 #' variables and the results of the diagnosis (1 = positive, 0 = negative).
 #'
-#' @note A dedicated \code{\link[=fit.heaRt]{fit}} function is provided for objects
+#' @note A dedicated \code{\link[=fit]{fit}} function is provided for objects
 #' of class \code{"heaRt"}.
 #'
 #' @export
