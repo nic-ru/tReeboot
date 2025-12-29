@@ -32,5 +32,5 @@ library(heaRt)
 dat <- load_heaRt(vars = "rbp-restECG", severe_diag = TRUE)
 }
 \seealso{
-\code{\link[=fit]{fit}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}}
+\code{\link[=fit.heaRt]{fit}}, \code{\link[=plot.heaRt_fit]{plot.heaRt_fit}}
 }
